@@ -9,10 +9,10 @@
   "private": false,
   "scripts": {
     "start": "node src/app.js",
-    "lint": "eslint \"src/**/*.{js,json}\"",
-    "lint:fix": "eslint --fix \"src/**/*.{js,json}\"",
-    "format": "prettier --check \"src/**/*.{js,json}\" --config ./.prettierrc",
-    "format:fix": "prettier --write \"src/**/*.{js,json}\" --config ./.prettierrc",
+    "lint": "eslint \"src/**/*.js\"",
+    "lint:fix": "eslint --fix \"src/**/*.js\"",
+    "format": "prettier --check \"src/**/*.js\" --config ./.prettierrc",
+    "format:fix": "prettier --write \"src/**/*.js\" --config ./.prettierrc",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -31,10 +31,9 @@
     "prettier": "2.8.3"
   },
   "lint-staged": {
-    "*.{js}": [
+    "*.js": [
       "yarn format:fix",
-      "yarn eslint:fix",
-      "git add"
+      "yarn lint:fix"
     ]
   }
 }
