@@ -1,0 +1,40 @@
+{
+  "name": "mail-sender",
+  "version": "1.0.0",
+  "description": "Email sender with Nodejs(no framework)",
+  "main": "index.js",
+  "repository": "https://github.com/curious-33/mail-sender.git",
+  "author": "Curious <curious.startpro@gmail.com> (https://t.me/curious_33)",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node src/app.js",
+    "lint": "eslint \"src/**/*.{js,json}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,json}\"",
+    "format": "prettier --check \"src/**/*.{js,json}\" --config ./.prettierrc",
+    "format:fix": "prettier --write \"src/**/*.{js,json}\" --config ./.prettierrc",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "nodemailer": "6.9.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.4.2",
+    "@commitlint/config-conventional": "17.4.2",
+    "eslint": "8.32.0",
+    "eslint-config-node": "4.1.0",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "husky": "8.0.3",
+    "lint-staged": "13.1.0",
+    "prettier": "2.8.3"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "yarn format:fix",
+      "yarn eslint:fix",
+      "git add"
+    ]
+  }
+}
