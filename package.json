@@ -8,14 +8,15 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node src/app.js",
-    "lint": "eslint \"src/**/*.js\"",
-    "lint:fix": "eslint --fix \"src/**/*.js\"",
-    "format": "prettier --check \"src/**/*.js\" --config ./.prettierrc",
-    "format:fix": "prettier --write \"src/**/*.js\" --config ./.prettierrc",
+    "start": "node ./src/app.js",
+    "lint": "eslint \"./src/**/*.js\"",
+    "lint:fix": "eslint --fix \"./src/**/*.js\"",
+    "format": "prettier --check \"./src/**/*.js\" --config ./.prettierrc",
+    "format:fix": "prettier --write \"./src/**/*.js\" --config ./.prettierrc",
     "prepare": "husky install"
   },
   "dependencies": {
+    "dotenv": "16.0.3",
     "nodemailer": "6.9.0"
   },
   "devDependencies": {

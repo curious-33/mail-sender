@@ -1,20 +1,43 @@
 const fs = require('fs')
 const http = require('http')
+const nodemailer = require('nodemailer')
+
+require('dotenv').config()
 
 const hostname = '127.0.0.1'
-const port = 3000
+const port = 8080
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-type', 'text/plain')
-  res.end('Hello worl!\n')
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: process.env.MAIL_USERNAME,
+    // pass: process.env.MAIL_PASSWORD,
+    clientId: process.env.OAUTH_CLIENTID,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET,
+    refreshToken: process.env.MAIL_USERNAME.includes('media')
+      ? process.env.OAUTH_REFRESH_TOKEN_2
+      : process.env.OAUTH_REFRESH_TOKEN_1,
+  },
 })
 
-fs.watch('app.js', (eventType, filename) => {
-  console.log(`[${filename}]: restarting due to changes...`)
-  console.log(`[${filename}]: ${eventType}`)
+const mailOptions = {
+  from: process.env.MAIL_USERNAME,
+  to: 'example@gmail.com',
+  subject: 'Email sender',
+  text: 'Hi, How r u doin?',
+}
+
+transporter.sendMail(mailOptions, function (err, data) {
+  if (err) {
+    console.log('Something went wrong')
+  } else {
+    console.log('Email sent successfully')
+  }
 })
 
-server.listen(port, hostname, () => {
-  console.log(`⚡️ Server running at http://${hostname}:${port}`)
-})
+http
+  .createServer((req, res) => {})
+  .listen(port, hostname, () => {
+    console.log(`⚡️ Server running at http://${hostname}:${port}`)
+  })
