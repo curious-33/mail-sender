@@ -1,4 +1,3 @@
-const fs = require('fs')
 const http = require('http')
 const nodemailer = require('nodemailer')
 
@@ -23,7 +22,7 @@ const transporter = nodemailer.createTransport({
 
 const mailOptions = {
   from: process.env.MAIL_USERNAME,
-  to: 'example@gmail.com',
+  to: 'mmprogramming3@gmail.com',
   subject: 'Email sender',
   text: 'Hi, How r u doin?',
 }
